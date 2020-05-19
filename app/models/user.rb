@@ -16,15 +16,15 @@ class User < ApplicationRecord
 
   validates :username, length: { maximum: 40 }
   validates :username, format: { with: USERNAME_REGEXP }
-  validates :username, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: true
 
   validates :password, presence: true, on: :create
   validates_confirmation_of :password
 
   before_save :encrypt_password
-  before_save :downcase_username
+  before_validation :downcase_username!, on: :create
 
-  def downcase_username
+  def downcase_username!
     self.username = username.downcase
   end
 
