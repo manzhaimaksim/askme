@@ -26,11 +26,15 @@ class User < ApplicationRecord
   before_save :downcase_email!
 
   def downcase_username!
-    self.username = username.downcase
+    if username.present?
+      self.username = username.downcase
+    end
   end
 
   def downcase_email!
-    self.email = email.downcase
+    if email.present?
+      self.email = email.downcase
+    end
   end
 
   def encrypt_password
