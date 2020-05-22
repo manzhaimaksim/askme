@@ -21,6 +21,7 @@
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
+    <%= content_tag(:div, content_tag(:h3, inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов')), class: "strong") %>
     <div class="questions-list">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
