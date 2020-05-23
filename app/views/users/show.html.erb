@@ -21,7 +21,7 @@
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
-    <%= content_tag(:h3, inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов'), class: "title-medium buffer-both-large") %>
+    <%= content_tag(:h3, I18n.t('user.questions', count: @questions.count), class: "title-medium buffer-both-large") %>
     <div class="questions-list">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
