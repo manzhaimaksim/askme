@@ -32,6 +32,6 @@
 en:
   user:
     questions:
-      one: "%{questions_count} question"
-      other: "%{questions_count} questions"
+      one: "%{count} question"
+      other: "%{count} questions"
 
