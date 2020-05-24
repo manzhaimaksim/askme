@@ -9,7 +9,7 @@
 Question.destroy_all
 User.destroy_all
 
-neo = User.create(id: 1, name: 'Томас', username: 'Neo', email: 'neo@matrix.com', password: '12345', avatar_url: 'Neo.jpg')
+neo = User.create(id: 1, name: 'Новичок', username: 'Neo', email: 'neo@matrix.com', password: '12345', avatar_url: 'Neo.jpg')
 trinity = User.create(id: 2, name: 'Троица', username: 'Trinity', email: 'trinity@matrix.com', password: '12345', avatar_url: 'Trinityfull.jpg')
 morpheus = User.create(id: 3, name: 'Морфей', username: 'Morpheus', email: 'morpheus@matrix.com', password: '12345', avatar_url: 'Morpheus1.jpg')
 

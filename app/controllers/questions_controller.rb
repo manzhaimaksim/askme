@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :load_question, only: [:edit, :update, :destroy]
   before_action :authorize_user, except: [:create]
 
   def create
@@ -22,8 +23,6 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    # Перед тем, как удалять вопрос, сохраним пользователя, чтобы знать, куда
-    # редиректить после удаления
     user = @question.user
     @question.destroy
     redirect_to user_path(user), notice: 'Вопрос удален :('
@@ -35,7 +34,9 @@ class QuestionsController < ApplicationController
     reject_user unless @question.user == current_user
   end
 
-  private
+  def load_question
+    @question = Question.find(params[:id])
+  end
 
   # Мы говорим, что у хеша params должен быть ключ :question.
   # Значением этого ключа может быть хеш с ключами: :user_id и :text.
@@ -43,8 +44,7 @@ class QuestionsController < ApplicationController
   def question_params
     # Защита от уязвимости: если текущий пользователь — адресат вопроса,
     # он может менять ответы на вопрос, ему доступно и поле :answer.
-    if current_user.present? &&
-      params[:question][:user_id].to_i == current_user.id
+    if current_user.present? && params[:question][:user_id].to_i == current_user.id
       params.require(:question).permit(:user_id, :text, :answer)
     else
       params.require(:question).permit(:user_id, :text)
