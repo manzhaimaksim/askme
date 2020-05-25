@@ -1,6 +1,8 @@
 //= link_tree ../images
-//= link_directory ../stylesheets .css
-//= require jquery3
+//= link application.css
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
 
 $(function(){
   $('#ask-button').click(function(){
