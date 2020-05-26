@@ -7,8 +7,10 @@ gem 'bootsnap'
 gem 'jquery-rails'
 gem 'listen'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
-gem 'sqlite3', '~> 1.4'
 gem 'rails-i18n'
+gem 'rails_12factor'
+gem 'rake'
+gem 'uglifier'
 gem 'webpacker', '~> 4.0'
 
 group :development, :test do
@@ -16,5 +18,10 @@ group :development, :test do
 end
 
 group :development do
+  gem 'sqlite3', '~> 1.4'
   gem 'web-console', '>= 3.3.0'
+end
+
+group :production do
+  gem 'pg'
 end
