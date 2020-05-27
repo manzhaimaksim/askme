@@ -31,7 +31,7 @@
 
       <div class="form-field">
         <%= f.label 'Цвет фона вашей аватарки', class: 'form-label' %>
-        <%= f.text_field :avatar_color, class: 'form-text-field' %>
+        <%= f.select :avatar_color, options_for_select([['Красный', :red], ['Оранжевый', :orange], ['Желтый', :yellow], ['Зеленый', :green], ['Голубой', :blue], ['Синий', :indigo], ['Фиолетовый', :violet]]), class: 'form-drop-menu ' %>
       </div>
 
       <div class="buffer-top-large buffer-bottom">
