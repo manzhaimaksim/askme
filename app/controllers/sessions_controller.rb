@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
     # Если юзер есть, записываем id этого юзера в объект session
     # Перенаправляем на главную с сообщением
     if @user.present?
+      session[:user_id] = @user.id
       redirect_to root_url, notice: 'вы успешно залогинились'
     # Если что-то не так – сообщаем и рендерим шаблон снова
     else
