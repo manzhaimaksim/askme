@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :load_user, except: %i[index create new]
   before_action :authorize_user, except: %i[index new create show]
@@ -25,7 +23,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @user.update(user_params)
