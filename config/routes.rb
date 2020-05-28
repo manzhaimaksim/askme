@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  get 'user/destroy'
   root to: 'users#index'
-  resources :users, except: [:destroy]
+  resources :users
   resources :questions, except: [:show, :new, :index]
   resources :sessions, only: [:new, :create, :destroy]
   get 'sign_up' => 'users#new'
