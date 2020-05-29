@@ -4,7 +4,14 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.author = current_user
+
+    # если отсутствует авторизованый пользователь, то автором вопроса становиться Аноним
+    if current_user.present?
+      @question.author = current_user
+    else
+      @question.author = nil
+    end
+
     if @question.save
       # После сохранения вопроса редиректим на пользователя
       redirect_to user_path(@question.user), notice: 'Вопрос задан'

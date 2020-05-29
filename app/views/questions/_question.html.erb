@@ -15,7 +15,11 @@
     </div>
 
     <div class="question-author">
-      <p>Вопрос от <%= link_to question.author.username, user_path(question.author) %></p>
+      <% if question.author.nil? %>
+        <p>Вопрос от Анонима</p>
+      <% else %>
+        <p>Вопрос от <%= link_to question.author.username, user_path(question.author) %></p>
+      <% end %>
     </div>
   </div>
 
