@@ -34,4 +34,9 @@ en:
     questions:
       one: "%{count} question"
       other: "%{count} questions"
-
+    answers:
+      one: "%{count} answer"
+      other: "%{count} answers"
+    unanswered:
+      one: "%{count} unanswered"
+      other: "%{count} unanswered"

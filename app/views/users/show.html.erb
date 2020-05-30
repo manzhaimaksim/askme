@@ -22,16 +22,13 @@
 
     <div class="user-statistics container text-center">
       <div class="column-1-3">
-        <h1 class="title-small"><%= @questions_count %></h1>
-        <p>вопросов</p>
+        <h1 class="title-small"><%= t('user.questions', count: @questions_count) %></h1>
       </div>
       <div class="column-1-3">
-        <h1 class="title-small"><%= @answers_count %></h1>
-        <p>ответов</p>
+        <h1 class="title-small"><%= t('user.answers', count: @answers_count) %></h1>
       </div>
       <div class="column-1-3">
-        <h1 class="title-small"><%= @unanswered_count %></h1>
-        <p>безответных</p>
+        <h1 class="title-small"><%= t('user.unanswered', count: @unanswered_count) %></h1>
       </div>
     </div>
   </div>
@@ -53,8 +50,10 @@
 </div>
 
 <div class="column-3-4">
-  <div class="user-questions buffer-both">
-    <%= content_tag(:h3, t('user.questions', count: @questions_count), class: "title-medium buffer-both-large") %>
+  <div class="user-questions">
+    <div class="buffer-both">
+      <%= content_tag(:h3, t('user.questions', count: @questions_count), class: "title-medium text-center") %>
+    </div>
     <div class="questions-list">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
