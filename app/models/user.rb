@@ -5,6 +5,7 @@ class User < ApplicationRecord
   DIGEST = OpenSSL::Digest::SHA256.new
   EMAIL_REGEXP = /\A.+@.+\z/
   USERNAME_REGEXP = /\A\w+\z/
+  AVATAR_COLOR_REGEXP = /\A\#[a-fA-F0-9]{6}\z/
 
   attr_accessor :password
 
@@ -21,6 +22,8 @@ class User < ApplicationRecord
 
   validates :password,  presence: true, on: :create,
                         confirmation: true
+
+  validates :avatar_color, format: { with: AVATAR_COLOR_REGEXP }
 
   before_save :encrypt_password
   before_validation :downcase_values!
