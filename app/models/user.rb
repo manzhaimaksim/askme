@@ -23,7 +23,8 @@ class User < ApplicationRecord
   validates :password,  presence: true, on: :create,
                         confirmation: true
 
-  validates :avatar_color, format: { with: AVATAR_COLOR_REGEXP }
+  validates :avatar_color,  format: { with: AVATAR_COLOR_REGEXP },
+                            allow_nil: true
 
   before_save :encrypt_password
   before_validation :downcase_values!
