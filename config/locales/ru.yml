@@ -1,8 +1,20 @@
 ru:
   user:
     questions:
-      zero: "Нет вопросов"
+      zero: "%{count} вопросов"
       one: "%{count} вопрос"
       few: "%{count} вопроса"
       many: "%{count} вопросов"
       other: "%{count} вопросов"
+    answers:
+      zero: "%{count} ответов"
+      one: "%{count} ответ"
+      few: "%{count} ответа"
+      many: "%{count} ответов"
+      other: "%{count} ответов"
+    unanswered:
+      zero: "%{count} неотвеченных"
+      one: "%{count} неотвеченый"
+      few: "%{count} неотвеченных"
+      many: "%{count} неотвеченных"
+      other: "%{count} неотвеченных"

@@ -1,22 +1,23 @@
 class UsersController < ApplicationController
-  before_action :load_user, except: [:index, :create, :new]
-  before_action :authorize_user, except: [:index, :new, :create, :show]
+  before_action :load_user, except: %i[index create new]
+  before_action :authorize_user, except: %i[index new create show destroy]
 
   def index
     @users = User.all
   end
 
   def new
-    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
+    redirect_to root_path, alert: 'Вы уже залогинены' if current_user.present?
     @user = User.new
   end
 
   def create
-    redirect_to root_url, alert: 'Вы уже залогинены' if current_user.present?
+    redirect_to root_path, alert: 'Вы уже залогинены' if current_user.present?
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_url, notice: 'Пользователь успешно зарегистрирован!'
+      log_in @user
+      redirect_to root_path, notice: 'Пользователь успешно зарегистрирован!'
     else
       render 'new'
     end
@@ -42,6 +43,12 @@ class UsersController < ApplicationController
     @unanswered_count = @questions_count - @answers_count
   end
 
+  def destroy
+    log_out
+    @user.destroy
+    redirect_to root_path, notice: 'Ваш аккаунт успешно удален'
+  end
+
   private
 
   def authorize_user
@@ -53,6 +60,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name, :username, :avatar_url)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name, :username, :avatar_url, :avatar_color)
   end
 end

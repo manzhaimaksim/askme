@@ -1,9 +1,16 @@
 class QuestionsController < ApplicationController
-  before_action :load_question, only: [:edit, :update, :destroy]
-  before_action :authorize_user, except: [:create]
+  before_action :load_question, only: %i[edit update destroy]
+  before_action :authorize_user, except: %i[create]
 
   def create
     @question = Question.new(question_params)
+
+    # если отсутствует авторизованый пользователь, то автором вопроса становиться Аноним
+    if current_user.present?
+      @question.author = current_user
+    else
+      @question.author = nil
+    end
 
     if @question.save
       # После сохранения вопроса редиректим на пользователя
