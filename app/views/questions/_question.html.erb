@@ -1,7 +1,7 @@
 <div class="question">
   <div class="question-content">
     <div class="question-text text-lead">
-      <%= question.text %>
+      <%= text_with_hashtag_link(question.text) %>
     </div>
 
     <% if question.answer.present? %>
