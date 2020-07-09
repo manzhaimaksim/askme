@@ -10,6 +10,7 @@ gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
 gem 'rails-i18n'
 gem 'rails_12factor'
 gem 'rake'
+gem 'recaptcha', require: 'recaptcha/rails'
 gem 'uglifier'
 gem 'webpacker', '~> 4.0'
 
