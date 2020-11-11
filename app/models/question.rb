@@ -7,16 +7,16 @@ class Question < ApplicationRecord
 
   validates :text, length: { maximum: 255 }, presence: true
 
-  after_commit :create_hashtags, on: [:create, :update]
+  after_commit :create_hashtags, on: %i[create update]
 
   private
 
   def create_hashtags
     self.hashtags =
-      "#{answer} #{text}".
-          downcase.
-          scan(Hashtag::REGEXP).
-          uniq.
-          map { |ht| Hashtag.find_or_create_by(text: ht.delete('#')) }
+      "#{answer} #{text}"
+      .downcase
+      .scan(Hashtag::REGEXP)
+      .uniq
+      .map { |ht| Hashtag.find_or_create_by(text: ht.delete('#')) }
   end
 end

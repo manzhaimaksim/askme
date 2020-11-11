@@ -3,9 +3,9 @@ require 'openssl'
 class User < ApplicationRecord
   ITERATIONS = 20_000
   DIGEST = OpenSSL::Digest::SHA256.new
-  EMAIL_REGEXP = /\A.+@.+\z/
-  USERNAME_REGEXP = /\A\w+\z/
-  AVATAR_COLOR_REGEXP = /\A\#[a-fA-F0-9]{6}\z/
+  EMAIL_REGEXP = /\A.+@.+\z/.freeze
+  USERNAME_REGEXP = /\A\w+\z/.freeze
+  AVATAR_COLOR_REGEXP = /\A\#[a-fA-F0-9]{6}\z/.freeze
 
   attr_accessor :password
 
