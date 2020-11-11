@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
       @question.author = nil
     end
 
-    if @question.save
+    if check_captcha(@question) && @question.save
       # После сохранения вопроса редиректим на пользователя
       redirect_to user_path(@question.user), notice: 'Вопрос задан'
     else
@@ -43,6 +43,10 @@ class QuestionsController < ApplicationController
 
   def load_question
     @question = Question.find(params[:id])
+  end
+
+  def check_captcha(model)
+    current_user.present? || verify_recaptcha(model: model)
   end
 
   # Мы говорим, что у хеша params должен быть ключ :question.
